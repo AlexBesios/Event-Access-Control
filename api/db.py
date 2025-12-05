@@ -50,7 +50,7 @@ class DatabaseManager:
 
         cursor.execute(
             """
-            INSERT INTO members (first_name, last_name, email, phone, face_data, face_image)
+            INSERT INTO members (first_name, last_name, email, phone, face_data, face_image) 
             VALUES (?, ?, ?, ?, ?, ?)
         """,
             (first_name, last_name, email, phone, face_data_blob, face_image_blob),
@@ -61,65 +61,43 @@ class DatabaseManager:
 
     def get_all_members(self):
         conn = sqlite3.connect(self.db_path)
+        conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
 
         cursor.execute(
-            "SELECT id, first_name, last_name, email, phone, face_data, face_image FROM members"
+            "SELECT id, first_name, last_name, email, phone, face_data FROM members"
         )
-        members = cursor.fetchall()
+        rows = cursor.fetchall()
+
+        members = [dict(row) for row in rows]
 
         conn.close()
-
-        result = []
-        for member in members:
-            (
-                member_id,
-                first_name,
-                last_name,
-                email,
-                phone,
-                face_blob,
-                face_image_blob,
-            ) = member
-            result.append(
-                {
-                    "id": member_id,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "email": email,
-                    "phone": phone,
-                    "face_data": face_blob,
-                    "face_image": face_image_blob,
-                }
-            )
-
-        return result
+        return members
 
     def get_member_by_id(self, member_id):
         conn = sqlite3.connect(self.db_path)
+        conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
 
         cursor.execute(
             "SELECT id, first_name, last_name, email, phone FROM members WHERE id = ?",
             (member_id,),
         )
-        member = cursor.fetchone()
-        conn.close()
+        row = cursor.fetchone()
 
-        if member:
-            return {
-                "id": member[0],
-                "first_name": member[1],
-                "last_name": member[2],
-                "email": member[3],
-                "phone": member[4],
-            }
-        return None
+        if row:
+            member = dict(row)
+        else:
+            member = None
+
+        conn.close()
+        return member
 
     def delete_member(self, member_id):
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
 
         cursor.execute("DELETE FROM members WHERE id = ?", (member_id,))
+
         conn.commit()
         conn.close()

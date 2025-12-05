@@ -1,13 +1,28 @@
 {
   "name": "event-access-control",
+  "version": "1.0.0",
+  "description": "Event Access Control System with Face Recognition",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "author": "Alex Besios",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexBesios/Event-Access-Control.git"
+  },
+  "keywords": [
+    "face-recognition",
+    "event-management",
+    "access-control",
+    "react",
+    "opencv"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite preview --port 5173"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",

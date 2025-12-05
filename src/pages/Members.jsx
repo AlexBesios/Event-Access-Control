@@ -25,8 +25,8 @@ export default function Members() {
 	const fetchMembers = useCallback(async (search = "") => {
 		try {
 			const url = search
-				? `http://localhost:8000/api/members?search=${encodeURIComponent(search)}`
-				: "http://localhost:8000/api/members";
+				? `http://localhost:3001/api/members?search=${encodeURIComponent(search)}`
+				: "http://localhost:3001/api/members";
 			const response = await fetch(url);
 			const data = await response.json();
 			setMembers(data.members);
@@ -73,7 +73,7 @@ export default function Members() {
 
 		try {
 			const response = await fetch(
-				`http://localhost:8000/api/members/${memberId}`,
+				`http://localhost:3001/api/members/${memberId}`,
 				{
 					method: "DELETE",
 				}

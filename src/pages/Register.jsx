@@ -84,7 +84,7 @@ export default function Register() {
 				formDataToSend.append("camera_image", photoData);
 			}
 
-			const response = await fetch("http://localhost:8000/api/register", {
+			const response = await fetch("http://localhost:3001/api/members/register", {
 				method: "POST",
 				body: formDataToSend,
 			});

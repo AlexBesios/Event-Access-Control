@@ -47,7 +47,7 @@ export default function Verification() {
 		setMessage("Verifying...");
 
 		try {
-			const response = await fetch("http://localhost:8000/api/verify", {
+			const response = await fetch("http://localhost:3001/api/verify", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -137,8 +137,8 @@ export default function Verification() {
 	const fetchMembers = async (search = "") => {
 		try {
 			const url = search
-				? `http://localhost:8000/api/members?search=${encodeURIComponent(search)}`
-				: "http://localhost:8000/api/members";
+				? `http://localhost:3001/api/members?search=${encodeURIComponent(search)}`
+				: "http://localhost:3001/api/members";
 			const response = await fetch(url);
 			const data = await response.json();
 			setMembers(data.members || []);

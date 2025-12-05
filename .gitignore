@@ -22,3 +22,22 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python
+api/__pycache__/
+api/venv/
+api/*.pyc
+*.py[cod]
+*$py.class
+
+# Database
+api/event_access.db
+
+# Environment
+.env
+.env.local
+.env.production
+
+# OS
+Thumbs.db
+.DS_Store
