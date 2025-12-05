@@ -78,20 +78,46 @@ cd ..
 
 ## Running the Application
 
-### Option 1: Start All Services (Windows)
+### Development Mode
 
+#### Windows
 ```powershell
 .\start-all.ps1
 ```
 
-### Option 2: Start Services Individually
+#### Linux/Mac
+```bash
+chmod +x start-all.sh
+./start-all.sh
+```
+
+To stop services on Linux/Mac:
+```bash
+./stop-all.sh
+```
+
+### Production Mode (AWS/Linux)
+
+```bash
+chmod +x start-production.sh
+./start-production.sh
+```
+
+This uses PM2 for process management.
+
+### Manual Startup (All Platforms)
 
 **Terminal 1 - Python Face Service:**
 ```bash
 cd api
-.\venv\Scripts\Activate.ps1  # Windows
-# source venv/bin/activate    # Linux/Mac
+
+# Windows
+.\venv\Scripts\Activate.ps1
 python face_service.py
+
+# Linux/Mac
+source venv/bin/activate
+python3 face_service.py
 ```
 
 **Terminal 2 - Node.js API:**

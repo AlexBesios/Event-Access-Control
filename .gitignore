@@ -38,6 +38,9 @@ api/event_access.db
 .env.local
 .env.production
 
+# Process IDs
+.pids
+
 # OS
 Thumbs.db
 .DS_Store
