@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import API_URL from "@/config";
 
 export default function Members() {
 	const [members, setMembers] = useState([]);
@@ -25,8 +26,8 @@ export default function Members() {
 	const fetchMembers = useCallback(async (search = "") => {
 		try {
 			const url = search
-				? `http://localhost:3001/api/members?search=${encodeURIComponent(search)}`
-				: "http://localhost:3001/api/members";
+				? `${API_URL}/api/members?search=${encodeURIComponent(search)}`
+				: `${API_URL}/api/members`;
 			const response = await fetch(url);
 			const data = await response.json();
 			setMembers(data.members);
@@ -73,7 +74,7 @@ export default function Members() {
 
 		try {
 			const response = await fetch(
-				`http://localhost:3001/api/members/${memberId}`,
+				`${API_URL}/api/members/${memberId}`,
 				{
 					method: "DELETE",
 				}

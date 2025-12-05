@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import Navigation from "@/components/Navigation";
+import API_URL from "@/config";
 
 export default function Register() {
 	const [formData, setFormData] = useState({
@@ -84,7 +85,7 @@ export default function Register() {
 				formDataToSend.append("camera_image", photoData);
 			}
 
-			const response = await fetch("http://localhost:3001/api/members/register", {
+			const response = await fetch(`${API_URL}/api/members/register`, {
 				method: "POST",
 				body: formDataToSend,
 			});

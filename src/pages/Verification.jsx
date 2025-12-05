@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import Navigation from "@/components/Navigation";
 import { Camera, UserCheck, ArrowLeft, CheckCircle } from "lucide-react";
+import API_URL from "@/config";
 
 export default function Verification() {
 	const [mode, setMode] = useState(null);
@@ -47,7 +48,7 @@ export default function Verification() {
 		setMessage("Verifying...");
 
 		try {
-			const response = await fetch("http://localhost:3001/api/verify", {
+			const response = await fetch(`${API_URL}/api/verify`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -137,8 +138,8 @@ export default function Verification() {
 	const fetchMembers = async (search = "") => {
 		try {
 			const url = search
-				? `http://localhost:3001/api/members?search=${encodeURIComponent(search)}`
-				: "http://localhost:3001/api/members";
+				? `${API_URL}/api/members?search=${encodeURIComponent(search)}`
+				: `${API_URL}/api/members`;
 			const response = await fetch(url);
 			const data = await response.json();
 			setMembers(data.members || []);
